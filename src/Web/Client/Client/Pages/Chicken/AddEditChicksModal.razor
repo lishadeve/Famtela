@@ -1,0 +1,70 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditChicksModal> _localizer
+
+<EditForm Model="@AddEditChickModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditChickModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Chicks Record"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Chicks Record"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditChickModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditChickModel.Id)" @bind-Value="AddEditChickModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditChickModel.NumberofBirds)" @bind-Value="AddEditChickModel.NumberofBirds" Label="@_localizer["Number of Birds"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditChickModel.TypeofFeed)" @bind-Value="AddEditChickModel.TypeofFeed" Label="@_localizer["Type of Feed"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditChickModel.Feed)" @bind-Value="AddEditChickModel.Feed" Label="@_localizer["Feed(KG)"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditChickModel.Vaccination)" @bind-Value="AddEditChickModel.Vaccination" Label="@_localizer["Vaccination"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditChickModel.Disease)" @bind-Value="AddEditChickModel.Disease" Label="@_localizer["Disease"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditChickModel.Medication)" @bind-Value="AddEditChickModel.Medication" Label="@_localizer["Medication"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditChickModel.Mortality)" @bind-Value="AddEditChickModel.Mortality" Label="@_localizer["Mortality"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditChickModel.Remarks)" @bind-Value="AddEditChickModel.Remarks" Label="@_localizer["Remarks"]" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditChickModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

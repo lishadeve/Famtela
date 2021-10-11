@@ -1,0 +1,58 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditDairyExpenseModal> _localizer
+
+<EditForm Model="@AddEditDairyExpenseModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditDairyExpenseModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Dairy Expenses Record"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Dairy Expenses Record"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditDairyExpenseModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditDairyExpenseModel.Id)" @bind-Value="AddEditDairyExpenseModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditDairyExpenseModel.Description)" @bind-Value="AddEditDairyExpenseModel.Description" Label="@_localizer["Description"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditDairyExpenseModel.Quantity)" @bind-Value="AddEditDairyExpenseModel.Quantity" Label="@_localizer["Quantity"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditDairyExpenseModel.UnitCost)" @bind-Value="AddEditDairyExpenseModel.UnitCost" Label="@_localizer["Unit Cost"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditDairyExpenseModel.Transport)" @bind-Value="AddEditDairyExpenseModel.Transport" Label="@_localizer["Transport"]" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditDairyExpenseModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

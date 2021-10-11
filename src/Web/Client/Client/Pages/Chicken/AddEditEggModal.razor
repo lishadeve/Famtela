@@ -1,0 +1,67 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditEggModal> _localizer
+
+<EditForm Model="@AddEditEggModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditEggModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Eggs Expenses Record"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Eggs Expenses Record"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditEggModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditEggModel.Id)" @bind-Value="AddEditEggModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditEggModel.Sold)" @bind-Value="AddEditEggModel.Sold" Label="@_localizer["Sold"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditEggModel.UnitPrice)" @bind-Value="AddEditEggModel.UnitPrice" Label="@_localizer["Unit Price"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditEggModel.Retained)" @bind-Value="AddEditEggModel.Retained" Label="@_localizer["Retained"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditEggModel.Rejected)" @bind-Value="AddEditEggModel.Rejected" Label="@_localizer["Rejected"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditEggModel.Home)" @bind-Value="AddEditEggModel.Home" Label="@_localizer["Home"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditEggModel.Transport)" @bind-Value="AddEditEggModel.Transport" Label="@_localizer["Transport"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditEggModel.Remarks)" @bind-Value="AddEditEggModel.Remarks" Label="@_localizer["Remarks"]" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditEggModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

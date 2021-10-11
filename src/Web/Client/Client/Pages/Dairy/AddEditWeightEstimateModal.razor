@@ -1,0 +1,55 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditWeightEstimateModal> _localizer
+
+<EditForm Model="@AddEditWeightEstimateModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditWeightEstimateModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Weight Estimate"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Weight Estimate"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditWeightEstimateModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditWeightEstimateModel.Id)" @bind-Value="AddEditWeightEstimateModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditWeightEstimateModel.CM)" @bind-Value="AddEditWeightEstimateModel.CM" Label="@_localizer["CM"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditWeightEstimateModel.KG)" @bind-Value="AddEditWeightEstimateModel.KG" Label="@_localizer["KG"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditWeightEstimateModel.Remarks)" @bind-Value="AddEditWeightEstimateModel.Remarks" Label="@_localizer["Remarks"]" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditWeightEstimateModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

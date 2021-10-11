@@ -1,0 +1,1159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Famtela.Server</name>
+    </assembly>
+    <members>
+        <member name="T:Famtela.Server.Controllers.BaseApiController`1">
+            <summary>
+            Abstract BaseApi Controller Class
+            </summary>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Communication.ChatsController.GetChatHistoryAsync(System.String)">
+            <summary>
+            Get user wise chat history
+            </summary>
+            <param name="contactId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Communication.ChatsController.GetChatUsersAsync">
+            <summary>
+            get available users
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Communication.ChatsController.SaveMessageAsync(Famtela.Domain.Application.Models.Chat.ChatHistory{Famtela.Domain.Application.Interfaces.Chat.IChatUser})">
+            <summary>
+            Save Chat Message
+            </summary>
+            <param name="message"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.AccountController.UpdateProfile(Famtela.Application.Requests.Identity.UpdateProfileRequest)">
+            <summary>
+            Update Profile
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.AccountController.ChangePassword(Famtela.Application.Requests.Identity.ChangePasswordRequest)">
+            <summary>
+            Change Password
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.AccountController.GetProfilePictureAsync(System.String)">
+            <summary>
+            Get Profile picture by Id
+            </summary>
+            <param name="userId"></param>
+            <returns>Status 200 OK </returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.AccountController.UpdateProfilePictureAsync(Famtela.Application.Requests.Identity.UpdateProfilePictureRequest)">
+            <summary>
+            Update Profile Picture
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.TokenController.Get(Famtela.Application.Requests.Identity.TokenRequest)">
+            <summary>
+            Get Token (Email, Password)
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.TokenController.Refresh(Famtela.Application.Requests.Identity.RefreshTokenRequest)">
+            <summary>
+            Refresh Token
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.GetAll">
+            <summary>
+            Get Users Details
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.GetById(System.String)">
+            <summary>
+            Get User By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.GetRolesAsync(System.String)">
+            <summary>
+            Get User Roles By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.UpdateRolesAsync(Famtela.Application.Requests.Identity.UpdateUserRolesRequest)">
+            <summary>
+            Update Roles for User
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.RegisterAsync(Famtela.Application.Requests.Identity.RegisterRequest)">
+            <summary>
+            Register a User
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.ConfirmEmailAsync(System.String,System.String)">
+            <summary>
+            Confirm Email
+            </summary>
+            <param name="userId"></param>
+            <param name="code"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.ToggleUserStatusAsync(Famtela.Application.Requests.Identity.ToggleUserStatusRequest)">
+            <summary>
+            Toggle User Status (Activate and Deactivate)
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.ForgotPasswordAsync(Famtela.Application.Requests.Identity.ForgotPasswordRequest)">
+            <summary>
+            Forgot Password
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.ResetPasswordAsync(Famtela.Application.Requests.Identity.ResetPasswordRequest)">
+            <summary>
+            Reset Password
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Identity.UserController.Export(System.String)">
+            <summary>
+            Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.RoleClaimController.GetAll">
+            <summary>
+            Get All Role Claims(e.g. Cow Create Permission)
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.RoleClaimController.GetAllByRoleId(System.String)">
+            <summary>
+            Get All Role Claims By Id
+            </summary>
+            <param name="roleId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.RoleClaimController.Post(Famtela.Application.Requests.Identity.RoleClaimRequest)">
+            <summary>
+            Add a Role Claim
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK </returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.RoleClaimController.Delete(System.Int32)">
+            <summary>
+            Delete a Role Claim
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.RoleController.GetAll">
+            <summary>
+            Get All Roles (basic, admin etc.)
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.RoleController.Post(Famtela.Application.Requests.Identity.RoleRequest)">
+            <summary>
+            Add a Role
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.RoleController.Delete(System.String)">
+            <summary>
+            Delete a Role
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.RoleController.GetPermissionsByRoleId(System.String)">
+            <summary>
+            Get Permissions By Role Id
+            </summary>
+            <param name="roleId"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.RoleController.Update(Famtela.Application.Requests.Identity.PermissionRequest)">
+            <summary>
+            Edit a Role Claim
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.AuditsController.GetUserTrailsAsync">
+            <summary>
+            Get Current User Audit Trails
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.AuditsController.ExportExcel(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Search Audit Trails and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <param name="searchInOldValues"></param>
+            <param name="searchInNewValues"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="T:Famtela.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4">
+            <summary>
+            Abstract Extended Attributes Controller Class
+            </summary>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetAll">
+            <summary>
+            Get All Entity Extended Attributes
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetAllByEntityId(`1)">
+            <summary>
+            Get All Entity Extended Attributes by entity id
+            </summary>
+            <param name="entityId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetById(`0)">
+            <summary>
+            Get Entity Extended Attribute By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Post(Famtela.Application.Features.ExtendedAttributes.Commands.AddEdit.AddEditExtendedAttributeCommand{`0,`1,`2,`3})">
+            <summary>
+            Create/Update a Entity Extended Attribute
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Delete(`0)">
+            <summary>
+            Delete a Entity Extended Attribute
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Export(System.String,`1,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Search Entity Extended Attribute and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <param name="entityId"></param>
+            <param name="includeEntity"></param>
+            <param name="onlyCurrentGroup"></param>
+            <param name="currentGroup"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.Misc.DocumentsController.GetAll(System.Int32,System.Int32,System.String)">
+            <summary>
+            Get All Documents
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.Misc.DocumentsController.GetById(System.Int32)">
+            <summary>
+            Get Document By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.Misc.DocumentsController.Post(Famtela.Application.Features.Documents.Commands.AddEdit.AddEditDocumentCommand)">
+            <summary>
+            Add/Edit Document
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.Misc.DocumentsController.Delete(System.Int32)">
+            <summary>
+            Delete a Document
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.Misc.DocumentTypesController.GetAll">
+            <summary>
+            Get All Document Types
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.Misc.DocumentTypesController.GetById(System.Int32)">
+            <summary>
+            Get Document Type By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.Misc.DocumentTypesController.Post(Famtela.Application.Features.DocumentTypes.Commands.AddEdit.AddEditDocumentTypeCommand)">
+            <summary>
+            Create/Update a Document Type
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.Misc.DocumentTypesController.Delete(System.Int32)">
+            <summary>
+            Delete a Document Type
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.Misc.DocumentTypesController.Export(System.String)">
+            <summary>
+            Search Document Types and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.Utilities.PreferencesController.ChangeLanguageAsync(System.String)">
+            <summary>
+            Change Language Preference
+            </summary>
+            <param name="languageCode"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.CountiesController.GetAll">
+            <summary>
+            Get All Counties
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.CountiesController.GetById(System.Int32)">
+            <summary>
+            Get a County By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.CountiesController.Post(Famtela.Application.Features.Counties.Commands.AddEdit.AddEditCountyCommand)">
+            <summary>
+            Create/Update a County
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.CountiesController.Delete(System.Int32)">
+            <summary>
+            Delete a County
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.CountiesController.Export(System.String)">
+            <summary>
+            Search Counties and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.CountiesController.Import(Famtela.Application.Features.Counties.Commands.Import.ImportCountiesCommand)">
+            <summary>
+            Import Counties from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.FarmProfilesController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Farm Profiles
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.FarmProfilesController.Post(Famtela.Application.Features.FarmProfiles.Commands.AddEdit.AddEditFarmProfileCommand)">
+            <summary>
+            Add/Edit a Farm Profile
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.FarmProfilesController.Delete(System.Int32)">
+            <summary>
+            Delete a Farm Profile
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.FarmProfilesController.Export(System.String)">
+            <summary>
+            Search Farm Profiles and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.TypesofFarmingController.GetAll">
+            <summary>
+            Get All TypesofFarming
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.TypesofFarmingController.GetById(System.Int32)">
+            <summary>
+            Get a TypeofFarming By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.TypesofFarmingController.Post(Famtela.Application.Features.TypesofFarming.Commands.AddEdit.AddEditTypeofFarmingCommand)">
+            <summary>
+            Create/Update a TypeofFarming
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.TypesofFarmingController.Delete(System.Int32)">
+            <summary>
+            Delete a TypeofFarming
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.TypesofFarmingController.Export(System.String)">
+            <summary>
+            Search TypesofFarming and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Catalog.TypesofFarmingController.Import(Famtela.Application.Features.TypesofFarming.Commands.Import.ImportTypesofFarmingCommand)">
+            <summary>
+            Import TypesofFarming from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.AgesController.GetAll">
+            <summary>
+            Get All Ages
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.AgesController.GetById(System.Int32)">
+            <summary>
+            Get a Age By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.AgesController.Post(Famtela.Application.Features.Ages.Commands.AddEdit.AddEditAgeCommand)">
+            <summary>
+            Create/Update a Age
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.AgesController.Delete(System.Int32)">
+            <summary>
+            Delete a Age
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.AgesController.Export(System.String)">
+            <summary>
+            Search Ages and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.AgesController.Import(Famtela.Application.Features.Ages.Commands.Import.ImportAgesCommand)">
+            <summary>
+            Import Ages from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChickenExpensesController.GetAll">
+            <summary>
+            Get All Chicken Expenses
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChickenExpensesController.GetById(System.Int32)">
+            <summary>
+            Get a Chicken Expense By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChickenExpensesController.Post(Famtela.Application.Features.ChickenExpenses.Commands.AddEdit.AddEditChickenExpenseCommand)">
+            <summary>
+            Create/Update a Chicken Expense
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChickenExpensesController.Delete(System.Int32)">
+            <summary>
+            Delete a Chicken Expense
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChickenExpensesController.Export(System.String)">
+            <summary>
+            Search Chicken Expenses and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChickenExpensesController.Import(Famtela.Application.Features.ChickenExpenses.Commands.Import.ImportChickenExpensesCommand)">
+            <summary>
+            Import Chicken Expenses from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChicksController.GetAll">
+            <summary>
+            Get All Chicks
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChicksController.GetById(System.Int32)">
+            <summary>
+            Get a Chick By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChicksController.Post(Famtela.Application.Features.Chicks.Commands.AddEdit.AddEditChickCommand)">
+            <summary>
+            Create/Update a Chick
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChicksController.Delete(System.Int32)">
+            <summary>
+            Delete a Chick
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChicksController.Export(System.String)">
+            <summary>
+            Search Chicks and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ChicksController.Import(Famtela.Application.Features.Chicks.Commands.Import.ImportChicksCommand)">
+            <summary>
+            Import Chicks from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ConsumptionsController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Consumptions
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ConsumptionsController.Post(Famtela.Application.Features.Consumptions.Commands.AddEdit.AddEditConsumptionCommand)">
+            <summary>
+            Add/Edit a Consumption
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ConsumptionsController.Delete(System.Int32)">
+            <summary>
+            Delete a Consumption
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.ConsumptionsController.Export(System.String)">
+            <summary>
+            Search Consumptions and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.EggsController.GetAll">
+            <summary>
+            Get All Eggs
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.EggsController.GetById(System.Int32)">
+            <summary>
+            Get a Egg By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.EggsController.Post(Famtela.Application.Features.Eggs.Commands.AddEdit.AddEditEggCommand)">
+            <summary>
+            Create/Update a Egg
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.EggsController.Delete(System.Int32)">
+            <summary>
+            Delete a Egg
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.EggsController.Export(System.String)">
+            <summary>
+            Search Eggs and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.EggsController.Import(Famtela.Application.Features.Eggs.Commands.Import.ImportEggsCommand)">
+            <summary>
+            Import Eggs from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.GrowersController.GetAll">
+            <summary>
+            Get All Growers
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.GrowersController.GetById(System.Int32)">
+            <summary>
+            Get a Grower By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.GrowersController.Post(Famtela.Application.Features.Growers.Commands.AddEdit.AddEditGrowerCommand)">
+            <summary>
+            Create/Update a Grower
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.GrowersController.Delete(System.Int32)">
+            <summary>
+            Delete a Grower
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.GrowersController.Export(System.String)">
+            <summary>
+            Search Growers and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.GrowersController.Import(Famtela.Application.Features.Growers.Commands.Import.ImportGrowersCommand)">
+            <summary>
+            Import Growers from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.LayersController.GetAll">
+            <summary>
+            Get All Layers
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.LayersController.GetById(System.Int32)">
+            <summary>
+            Get a Layer By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.LayersController.Post(Famtela.Application.Features.Layers.Commands.AddEdit.AddEditLayerCommand)">
+            <summary>
+            Create/Update a Layer
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.LayersController.Delete(System.Int32)">
+            <summary>
+            Delete a Layer
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.LayersController.Export(System.String)">
+            <summary>
+            Search Layers and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.LayersController.Import(Famtela.Application.Features.Layers.Commands.Import.ImportLayersCommand)">
+            <summary>
+            Import Layers from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.TypesofFeedController.GetAll">
+            <summary>
+            Get All Types of Feed
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.TypesofFeedController.GetById(System.Int32)">
+            <summary>
+            Get a Type of Feed By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.TypesofFeedController.Post(Famtela.Application.Features.TypesofFeed.Commands.AddEdit.AddEditTypeofFeedCommand)">
+            <summary>
+            Create/Update a Type of Feed
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.TypesofFeedController.Delete(System.Int32)">
+            <summary>
+            Delete a Type of Feed
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.TypesofFeedController.Export(System.String)">
+            <summary>
+            Search Types of Feed and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.TypesofFeedController.Import(Famtela.Application.Features.TypesofFeed.Commands.Import.ImportTypesofFeedCommand)">
+            <summary>
+            Import Types of Feed from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.VaccinationsController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Vaccinations
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.VaccinationsController.Post(Famtela.Application.Features.Vaccinations.Commands.AddEdit.AddEditVaccinationCommand)">
+            <summary>
+            Add/Edit a Vaccination
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.VaccinationsController.Delete(System.Int32)">
+            <summary>
+            Delete a Vaccination
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Chicken.VaccinationsController.Export(System.String)">
+            <summary>
+            Search Vaccinations and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Diseases.DiseasesController.GetAll">
+            <summary>
+            Get All Diseases
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Diseases.DiseasesController.GetById(System.Int32)">
+            <summary>
+            Get a Disease By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Diseases.DiseasesController.Post(Famtela.Application.Features.Diseases.Commands.AddEdit.AddEditDiseaseCommand)">
+            <summary>
+            Create/Update a Disease
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Diseases.DiseasesController.Delete(System.Int32)">
+            <summary>
+            Delete a Disease
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Diseases.DiseasesController.Export(System.String)">
+            <summary>
+            Search Diseases and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Diseases.DiseasesController.Import(Famtela.Application.Features.Diseases.Commands.Import.ImportDiseasesCommand)">
+            <summary>
+            Import Diseases from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.BreedsController.GetAll">
+            <summary>
+            Get All Breeds
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.BreedsController.GetById(System.Int32)">
+            <summary>
+            Get a Breed By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.BreedsController.Post(Famtela.Application.Features.Breeds.Commands.AddEdit.AddEditBreedCommand)">
+            <summary>
+            Create/Update a Breed
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.BreedsController.Delete(System.Int32)">
+            <summary>
+            Delete a Breed
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.BreedsController.Export(System.String)">
+            <summary>
+            Search Breeds and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.BreedsController.Import(Famtela.Application.Features.Breeds.Commands.Import.ImportBreedsCommand)">
+            <summary>
+            Import Breeds from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.ColorsController.GetAll">
+            <summary>
+            Get All Colors
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.ColorsController.GetById(System.Int32)">
+            <summary>
+            Get a Color By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.ColorsController.Post(Famtela.Application.Features.Colors.Commands.AddEdit.AddEditColorCommand)">
+            <summary>
+            Create/Update a Color
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.ColorsController.Delete(System.Int32)">
+            <summary>
+            Delete a Color
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.ColorsController.Export(System.String)">
+            <summary>
+            Search Colors and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.ColorsController.Import(Famtela.Application.Features.Colors.Commands.Import.ImportColorsCommand)">
+            <summary>
+            Import Colors from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.CowsController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Cows
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.CowsController.Post(Famtela.Application.Features.Cows.Commands.AddEdit.AddEditCowCommand)">
+            <summary>
+            Add/Edit a Cow
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.CowsController.Delete(System.Int32)">
+            <summary>
+            Delete a Cow
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.CowsController.Export(System.String)">
+            <summary>
+            Search Cows and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.DairyExpensesController.GetAll">
+            <summary>
+            Get All Dairy Expenses
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.DairyExpensesController.GetById(System.Int32)">
+            <summary>
+            Get a Dairy Expense By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.DairyExpensesController.Post(Famtela.Application.Features.DairyExpenses.Commands.AddEdit.AddEditDairyExpenseCommand)">
+            <summary>
+            Create/Update a Dairy Expense
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.DairyExpensesController.Delete(System.Int32)">
+            <summary>
+            Delete a Dairy Expense
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.DairyExpensesController.Export(System.String)">
+            <summary>
+            Search Dairy Expenses and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.DairyExpensesController.Import(Famtela.Application.Features.DairyExpenses.Commands.Import.ImportDairyExpensesCommand)">
+            <summary>
+            Import Dairy Expenses from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.MilkController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Milk
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.MilkController.Post(Famtela.Application.Features.Milks.Commands.AddEdit.AddEditMilkCommand)">
+            <summary>
+            Add/Edit a Milk
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.MilkController.Delete(System.Int32)">
+            <summary>
+            Delete a Milk
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.MilkController.Export(System.String)">
+            <summary>
+            Search Milk and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.StatusesController.GetAll">
+            <summary>
+            Get All Statuses
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.StatusesController.GetById(System.Int32)">
+            <summary>
+            Get a Status By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.StatusesController.Post(Famtela.Application.Features.Statuses.Commands.AddEdit.AddEditStatusCommand)">
+            <summary>
+            Create/Update a Status
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.StatusesController.Delete(System.Int32)">
+            <summary>
+            Delete a Status
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.StatusesController.Export(System.String)">
+            <summary>
+            Search Statuses and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.StatusesController.Import(Famtela.Application.Features.Statuses.Commands.Import.ImportStatusesCommand)">
+            <summary>
+            Import Statuses from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.TagsController.GetAll">
+            <summary>
+            Get All Tags
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.TagsController.GetById(System.Int32)">
+            <summary>
+            Get a Tag By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.TagsController.Post(Famtela.Application.Features.Tags.Commands.AddEdit.AddEditTagCommand)">
+            <summary>
+            Create/Update a Tag
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.TagsController.Delete(System.Int32)">
+            <summary>
+            Delete a Tag
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.TagsController.Export(System.String)">
+            <summary>
+            Search Tags and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.TagsController.Import(Famtela.Application.Features.Tags.Commands.Import.ImportTagsCommand)">
+            <summary>
+            Import Tags from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.WeightEstimatesController.GetAll">
+            <summary>
+            Get All Weight Estimates
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.WeightEstimatesController.GetById(System.Int32)">
+            <summary>
+            Get a Weight Estimate By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.WeightEstimatesController.Post(Famtela.Application.Features.WeightEstimates.Commands.AddEdit.AddEditWeightEstimateCommand)">
+            <summary>
+            Create/Update a Weight Estimate
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.WeightEstimatesController.Delete(System.Int32)">
+            <summary>
+            Delete a Weight Estimate
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.WeightEstimatesController.Export(System.String)">
+            <summary>
+            Search Weight Estimates and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.Dairy.WeightEstimatesController.Import(Famtela.Application.Features.WeightEstimates.Commands.Import.ImportWeightEstimatesCommand)">
+            <summary>
+            Import Weight Estimates from Excel
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Famtela.Server.Controllers.v1.DashboardController.GetDataAsync">
+            <summary>
+            Get Dashboard Data
+            </summary>
+            <returns>Status 200 OK </returns>
+        </member>
+    </members>
+</doc>

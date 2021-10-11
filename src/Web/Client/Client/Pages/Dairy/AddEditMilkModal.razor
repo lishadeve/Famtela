@@ -1,0 +1,58 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditMilkModal> _localizer
+
+<EditForm Model="@AddEditMilkModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditMilkModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Milk Record"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Milk Record"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditMilkModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditMilkModel.Id)" @bind-Value="AddEditMilkModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Cow"]" For="@(() => AddEditMilkModel.CowId)" @bind-Value="AddEditMilkModel.CowId" ResetValueOnEmptyText="true" SearchFunc="@SearchCows" Variant="Variant.Filled" ToStringFunc="@(i => _cows.FirstOrDefault(b => b.Id == i)?.EarTagNumber ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditMilkModel.Morning)" @bind-Value="AddEditMilkModel.Morning" Label="@_localizer["Morning"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditMilkModel.Evening)" @bind-Value="AddEditMilkModel.Evening" Label="@_localizer["Evening"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditMilkModel.Remarks)" @bind-Value="AddEditMilkModel.Remarks" Label="@_localizer["Remarks"]" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditMilkModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

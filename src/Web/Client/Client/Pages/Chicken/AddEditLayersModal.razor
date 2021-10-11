@@ -1,0 +1,73 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditLayersModal> _localizer
+
+<EditForm Model="@AddEditLayerModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditLayerModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Layers Record"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Layers Record"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditLayerModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditLayerModel.Id)" @bind-Value="AddEditLayerModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditLayerModel.NumberofBirds)" @bind-Value="AddEditLayerModel.NumberofBirds" Label="@_localizer["Number of Birds"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditLayerModel.TypeofFeed)" @bind-Value="AddEditLayerModel.TypeofFeed" Label="@_localizer["Type of Feed"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditLayerModel.Feed)" @bind-Value="AddEditLayerModel.Feed" Label="@_localizer["Feed(KG)"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditLayerModel.Eggs)" @bind-Value="AddEditLayerModel.Eggs" Label="@_localizer["Eggs"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditLayerModel.Vaccination)" @bind-Value="AddEditLayerModel.Vaccination" Label="@_localizer["Vaccination"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditLayerModel.Disease)" @bind-Value="AddEditLayerModel.Disease" Label="@_localizer["Disease"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditLayerModel.Medication)" @bind-Value="AddEditLayerModel.Medication" Label="@_localizer["Medication"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="int" For="@(() => AddEditLayerModel.Mortality)" @bind-Value="AddEditLayerModel.Mortality" Label="@_localizer["Mortality"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditLayerModel.Remarks)" @bind-Value="AddEditLayerModel.Remarks" Label="@_localizer["Remarks"]" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditLayerModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

@@ -1,0 +1,120 @@
+﻿@page "/dairy/cows"
+@attribute [Authorize(Policy = Permissions.Cows.View)]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Cows> _localizer
+@using Famtela.Application.Features.Cows.Queries.GetAllPaged;
+
+<style>
+    .mud-table-container {
+        overflow: auto;
+    }
+</style>
+
+<FamtelaTitle Title="@_localizer["Cows Records"]" Description="@_localizer["Manage cows records."]" />
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudTable Elevation="25" ServerData="@(new Func<TableState, Task<TableData<GetAllPagedCowsResponse>>>(ServerReload))" Hover="true" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" @ref="_table">
+        <ToolBarContent>
+            <div class="justify-center mud-text-align-center">
+                @if (_canCreateCows)
+                {
+                    <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" @onclick="@(() => InvokeModal(0))" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Create"]</MudButton>
+                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="@(() => OnSearch(""))" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                    @if (_canExportCows)
+                    {
+                        <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
+                    }
+                }
+                else
+                {
+                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="@(() => OnSearch(""))" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                    @if (_canExportCows)
+                    {
+                        <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
+                    }
+                }
+            </div>
+            <MudSpacer />
+            @if (_canSearchCows)
+            {
+                <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@_localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            }
+        </ToolBarContent>
+        <HeaderContent>
+            @*<MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="Id">@_localizer["Id"]</MudTableSortLabel></MudTh>*@
+            <MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="EarTagNumber">@_localizer["Cow Name"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="DateofBirth">@_localizer["Date of Birth"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="BirthWeight">@_localizer["Birth Weight"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="Dam">@_localizer["Dam"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="Sire">@_localizer["Sire"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="Breed">@_localizer["Breed"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="Color">@_localizer["Color"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="Status">@_localizer["Status"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedCowsResponse" SortLabel="Tag">@_localizer["Tag"]</MudTableSortLabel></MudTh>
+            <MudTh Style="text-align:right">@_localizer["Actions"]</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            @*<MudTd DataLabel="Id">@context.Id</MudTd>*@
+            <MudTd DataLabel="Cow Name">
+                <MudHighlighter Text="@context.EarTagNumber" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Date of Birth">@context.DateofBirth</MudTd>
+            <MudTd DataLabel="Birth Weight">@context.BirthWeight</MudTd>
+            <MudTd DataLabel="Dam">
+                <MudHighlighter Text="@context.Dam" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Sire">
+                <MudHighlighter Text="@context.Sire" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Sire">
+                <MudHighlighter Text="@context.Color" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Breed">
+                <MudHighlighter Text="@context.Breed" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Status">
+                <MudHighlighter Text="@context.Status" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Tag">
+                <MudHighlighter Text="@context.Tag" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Actions" Style="text-align: right">
+                @if (_canEditCows || _canDeleteCows)
+                    {
+                    <MudMenu Label="@_localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
+                        @if (_canEditCows)
+                            {
+                            <MudMenuItem @onclick="@(() => InvokeModal(@context.Id))">@_localizer["Edit"]</MudMenuItem>
+                            }
+                        @if (_canDeleteCows)
+                            {
+                            <MudMenuItem @onclick="@(() => Delete(@context.Id))">@_localizer["Delete"]</MudMenuItem>
+                            }
+                    </MudMenu>
+                    }
+                    else
+                    {
+                    <MudButton Variant="Variant.Filled"
+                               DisableElevation="true"
+                               StartIcon="@Icons.Material.Filled.DoNotTouch"
+                               IconColor="Color.Secondary"
+                               Size="Size.Small"
+                               Color="Color.Surface">
+                        @_localizer["No Allowed Actions"]
+                    </MudButton>
+                    }
+            </MudTd>
+        </RowTemplate>
+        <FooterContent>
+            <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Dense"]</MudSwitch>
+            <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@_localizer["Striped"]</MudSwitch>
+            <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@_localizer["Bordered"]</MudSwitch>
+        </FooterContent>
+        <PagerContent>
+            <TablePager />
+        </PagerContent>
+    </MudTable>
+}

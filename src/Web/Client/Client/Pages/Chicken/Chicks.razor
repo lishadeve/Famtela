@@ -1,0 +1,119 @@
+﻿@page "/chicken/chicks"
+@attribute [Authorize(Policy = Permissions.Chicks.View)]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Chicks> _localizer
+@using Famtela.Application.Features.Chicks.Queries.GetAll
+
+<style>
+    .mud-table-container {
+        overflow: auto;
+    }
+</style>
+
+<FamtelaTitle Title="@_localizer["Chicks Records"]" Description="@_localizer["Manage chicks records."]" />
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudTable Hover="true" Elevation="25" Items="_chicksList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<GetAllChicksResponse, bool>(Search)" @bind-brand="_chicks">
+        <ToolBarContent>
+            <div class="justify-center mud-text-align-center">
+                @if (_canCreateChicks)
+                {
+                    <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Create"]</MudButton>
+                    @if (_canImportChicks)
+                    {
+                        <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="InvokeImportModal" StartIcon="@Icons.Material.Filled.FileUpload" IconColor="Color.Surface" Style="margin-left: 5px;">@_localizer["Import"]</MudButton>
+                    }
+
+                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetChicksAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Reload"]</MudButton>
+                    @if (_canExportChicks)
+                    {
+                        <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
+                    }
+                }
+                else
+                {
+                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetChicksAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Reload"]</MudButton>
+                    @if (_canExportChicks)
+                    {
+                        <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
+                    }
+                }
+            </div>
+            <MudSpacer />
+            @if (_canSearchChicks)
+            {
+                <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="@_localizer["Search for Chicks"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+            }
+        </ToolBarContent>
+        <HeaderContent>
+            @*<MudTh><MudTableSortLabel SortBy="new Func<GetAllChicksResponse, object>(x => x.Id)">@_localizer["Id"]</MudTableSortLabel></MudTh>*@
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllChicksResponse, object>(x => x.NumberofBirds)">@_localizer["Number of Birds"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllChicksResponse, object>(x => x.TypeofFeed)">@_localizer["Type of Feed"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllChicksResponse, object>(x => x.Feed)">@_localizer["Feed"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllChicksResponse, object>(x => x.Vaccination)">@_localizer["Vaccination"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllChicksResponse, object>(x => x.Disease)">@_localizer["Disease"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllChicksResponse, object>(x => x.Medication)">@_localizer["Medication"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllChicksResponse, object>(x => x.Mortality)">@_localizer["Mortality"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllChicksResponse, object>(x => x.Remarks)">@_localizer["Remarks"]</MudTableSortLabel></MudTh>
+            <MudTh Style="text-align:right">@_localizer["Actions"]</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            @*<MudTd DataLabel="Id">@context.Id</MudTd>*@
+            <MudTd DataLabel="Quantity">@context.NumberofBirds</MudTd>
+            <MudTd DataLabel="Type of Feed">
+                <MudHighlighter Text="@context.TypeofFeed" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Total Cost">@context.Feed</MudTd>
+            <MudTd DataLabel="Vaccination">
+                <MudHighlighter Text="@context.Vaccination" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Disease">
+                <MudHighlighter Text="@context.Disease" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Medication">
+                <MudHighlighter Text="@context.Medication" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Mortality">@context.Mortality</MudTd>
+            <MudTd DataLabel="Remarks">
+                <MudHighlighter Text="@context.Remarks" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Actions" Style="text-align: right">
+                @if (_canEditChicks || _canDeleteChicks)
+                    {
+                    <MudMenu Label="@_localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
+                        @if (_canEditChicks)
+                            {
+                            <MudMenuItem @onclick="@(() => InvokeModal(@context.Id))">@_localizer["Edit"]</MudMenuItem>
+                            }
+                        @if (_canDeleteChicks)
+                            {
+                            <MudMenuItem @onclick="@(() => Delete(@context.Id))">@_localizer["Delete"]</MudMenuItem>
+                            }
+                    </MudMenu>
+                    }
+                    else
+                    {
+                    <MudButton Variant="Variant.Filled"
+                               DisableElevation="true"
+                               StartIcon="@Icons.Material.Filled.DoNotTouch"
+                               IconColor="Color.Secondary"
+                               Size="Size.Small"
+                               Color="Color.Surface">
+                        @_localizer["No Allowed Actions"]
+                    </MudButton>
+                    }
+            </MudTd>
+        </RowTemplate>
+        <FooterContent>
+            <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Dense"]</MudSwitch>
+            <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@_localizer["Striped"]</MudSwitch>
+            <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@_localizer["Bordered"]</MudSwitch>
+        </FooterContent>
+        <PagerContent>
+            <TablePager />
+        </PagerContent>
+    </MudTable>
+}

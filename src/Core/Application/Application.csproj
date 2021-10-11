@@ -1,0 +1,180 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Famtela.Application</RootNamespace>
+    <AssemblyName>Famtela.Application</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="FluentValidation" Version="10.2.3" />
+    <PackageReference Include="LazyCache" Version="2.1.3" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Features\Ages\Commands\Delete\DeleteAgeCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Ages\Commands\Import\ImportAgesCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Ages\Queries\Export\ExportAgesQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Breeds\Commands\Delete\DeleteBreedCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Breeds\Commands\Import\ImportBreedsCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Breeds\Queries\Export\ExportBreedsQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\ChickenExpenses\Commands\Delete\DeleteChickenExpenseCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\ChickenExpenses\Commands\Import\ImportChickenExpensesCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\ChickenExpenses\Queries\Export\ExportChickenExpensesQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Chicks\Commands\Delete\DeleteChicksCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Chicks\Commands\Import\ImportChicksCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Chicks\Queries\Export\ExportChicksQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Colors\Commands\Delete\DeleteColorCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Colors\Commands\Import\ImportColorsCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Colors\Queries\Export\ExportColorsQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Consumptions\Queries\Export\ExportConsumptionsQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Cows\Queries\Export\ExportCowsQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\DairyExpenses\Commands\Delete\DeleteDairyExpenseCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\DairyExpenses\Commands\Import\ImportDairyExpensesCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\DairyExpenses\Queries\Export\ExportDairyExpensesQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Diseases\Commands\Delete\DeleteDiseaseCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Diseases\Commands\Import\ImportDiseasesCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Diseases\Queries\Export\ExportDiseasesQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Eggs\Commands\Delete\DeleteEggCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Eggs\Commands\Import\ImportEggsCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Eggs\Queries\Export\ExportEggsQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Growers\Commands\Delete\DeleteGrowersCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Growers\Commands\Import\ImportGrowersCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Growers\Queries\Export\ExportGrowersQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Layers\Commands\Delete\DeleteLayersCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Layers\Commands\Import\ImportLayersCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Layers\Queries\Export\ExportLayersQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Milk\Commands\Delete\DeleteMilkCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Milk\Queries\Export\ExportMilkQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Statuses\Commands\Delete\DeleteStatusCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Statuses\Commands\Import\ImportStatusesCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Statuses\Queries\Export\ExportStatusesQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Tags\Commands\Delete\DeleteTagCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Tags\Commands\Import\ImportTagsCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Tags\Queries\Export\ExportTagsQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\TypesofFarming\Commands\Delete\DeleteTypeofFarmingCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\TypesofFarming\Commands\Import\ImportTypesofFarmingCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\TypesofFarming\Queries\Export\ExportTypesofFarmingQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\TypesofFeed\Commands\Delete\DeleteTypeofFeedCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\TypesofFeed\Commands\Import\ImportTypesofFeedCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\TypesofFeed\Queries\Export\ExportTypesofFeedQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\Vaccinations\Queries\Export\ExportVaccinationsQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\WeightEstimates\Commands\Delete\DeleteWeightEstimateCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\WeightEstimates\Commands\Import\ImportWeightEstimatesCommandHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Features\WeightEstimates\Queries\Export\ExportWeightEstimatesQueryHandler.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

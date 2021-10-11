@@ -1,0 +1,277 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<NavMenu> _localizer
+@using System.Security.Claims
+
+<UserCard />
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">@_localizer["Home"]</MudNavLink>
+    @if (_canViewHangfire)
+    {
+        <MudNavLink Href="/jobs" Target="_blank" Icon="@Icons.Material.Outlined.Work">
+            @_localizer["Hangfire"]
+        </MudNavLink>
+    }
+    <MudNavLink Href="/swagger/index.html" Target="_blank" Icon="@Icons.Material.Outlined.LiveHelp">
+        @_localizer["Swagger"]
+    </MudNavLink>
+    <MudListSubheader Class="mt-2 mb-n2">@_localizer["Personal"]</MudListSubheader>
+    @if (_canViewDashboards)
+    {
+        <MudNavLink Href="/dashboard" Icon="@Icons.Material.Outlined.Dashboard">
+            @_localizer["Dashboard"]
+        </MudNavLink>
+    }
+    <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.SupervisorAccount">
+        @_localizer["Account"]
+    </MudNavLink>
+    @if (_canViewAuditTrails)
+    {
+        <MudNavLink Href="/audit-trails" Icon="@Icons.Material.Outlined.Security">
+            @_localizer["Audit Trails"]
+        </MudNavLink>
+    }
+
+    @if (_canViewUsers || _canViewRoles)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["User Management"]</MudListSubheader>
+        @if (_canViewUsers)
+        {
+            <MudNavLink Href="/identity/users" Icon="@Icons.Material.Outlined.Person">
+                @_localizer["Users"]
+            </MudNavLink>
+        }
+        @if (_canViewRoles)
+        {
+            <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Person">@_localizer["Roles"]</MudNavLink>
+        }
+    }
+    @if (_canViewChat)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Communication"]</MudListSubheader>
+        <MudNavLink Href="/chat" Icon="@Icons.Material.Outlined.Chat">
+            @_localizer["Chat"]
+        </MudNavLink>
+    }
+    @if (_canViewFarmProfiles || _canViewCounties || _canViewTypesofFarming)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Catalog Management"]</MudListSubheader>
+        @if (_canViewFarmProfiles)
+        {
+            <MudNavLink Href="/catalog/farmprofiles" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Farm Profiles"]
+            </MudNavLink>
+        }
+        @if (_canViewCounties)
+        {
+            <MudNavLink Href="/catalog/counties" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Counties"]
+            </MudNavLink>
+        }
+        @if (_canViewTypesofFarming)
+        {
+            <MudNavLink Href="/catalog/typesoffarming" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Types of Farming"]
+            </MudNavLink>
+        }
+    }
+    @if (_canViewConsumptions || _canViewVaccinations || _canViewAges || _canViewChicks || _canViewChickenExpenses || _canViewDiseases || _canViewEggs || _canViewGrowers || _canViewLayers || _canViewTypesofFeed)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Chicken Management"]</MudListSubheader>
+        @if (_canViewVaccinations)
+        {
+            <MudNavLink Href="/chicken/vaccinations" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Vaccinations"]
+            </MudNavLink>
+        }
+        @if (_canViewConsumptions)
+        {
+            <MudNavLink Href="/chicken/consumptions" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Daily Consumption"]
+            </MudNavLink>
+        }
+        @if (_canViewChicks)
+        {
+            <MudNavLink Href="/chicken/chicks" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Chicks"]
+            </MudNavLink>
+        }
+        @if (_canViewGrowers)
+        {
+            <MudNavLink Href="/chicken/growers" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Growers"]
+            </MudNavLink>
+        }
+        @if (_canViewLayers)
+        {
+            <MudNavLink Href="/chicken/layers" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Layers"]
+            </MudNavLink>
+        }
+        @if (_canViewChickenExpenses)
+        {
+            <MudNavLink Href="/chicken/chickenexpenses" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Chicken Expenses"]
+            </MudNavLink>
+        }
+        @if (_canViewEggs)
+        {
+            <MudNavLink Href="/chicken/eggs" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Eggs"]
+            </MudNavLink>
+        }
+        @if (_canViewAges)
+        {
+            <MudNavLink Href="/chicken/ages" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Ages"]
+            </MudNavLink>
+        }
+        @if (_canViewDiseases)
+        {
+            <MudNavLink Href="/chicken/diseases" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Diseases"]
+            </MudNavLink>
+        }
+        @if (_canViewDiseases)
+        {
+            <MudNavLink Href="/chicken/typesoffeed" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Types of Feed"]
+            </MudNavLink>
+        }
+    }
+    @if (_canViewCows || _canViewMilk || _canViewBreeds || _canViewColors || _canViewStatuses || _canViewTags || _canViewDairyExpenses || _canViewWeightEstimates)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Dairy Management"]</MudListSubheader>
+        @if (_canViewCows)
+        {
+            <MudNavLink Href="/dairy/cows" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Cows"]
+            </MudNavLink>
+        }
+        @if (_canViewMilk)
+        {
+            <MudNavLink Href="/dairy/milk" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Milk"]
+            </MudNavLink>
+        }
+        @if (_canViewDairyExpenses)
+        {
+            <MudNavLink Href="/dairy/dairyexpenses" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Dairy Expenses"]
+            </MudNavLink>
+        }
+        @if (_canViewBreeds)
+        {
+            <MudNavLink Href="/dairy/breeds" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Breeds"]
+            </MudNavLink>
+        }
+        @if (_canViewColors)
+        {
+            <MudNavLink Href="/dairy/colors" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Colors"]
+            </MudNavLink>
+        }
+        @if (_canViewStatuses)
+        {
+            <MudNavLink Href="/dairy/statuses" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Statuses"]
+            </MudNavLink>
+        }
+        @if (_canViewTags)
+        {
+            <MudNavLink Href="/dairy/tags" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Tags"]
+            </MudNavLink>
+        }
+        @if (_canViewWeightEstimates)
+        {
+            <MudNavLink Href="/dairy/weightestimates" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Weight Estimates"]
+            </MudNavLink>
+        }
+    }
+
+    @if (_canViewDocuments || _canViewDocumentTypes)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Document Management"]</MudListSubheader>
+        @if (_canViewDocuments)
+        {
+            <MudNavLink Href="/document-store" Icon="@Icons.Material.Outlined.AttachFile">
+                @_localizer["Document Store"]
+            </MudNavLink>
+        }
+        @if (_canViewDocumentTypes)
+        {
+            <MudNavLink Href="/document-types" Icon="@Icons.Material.Outlined.FileCopy">
+                @_localizer["Document Types"]
+            </MudNavLink>
+        }
+    }
+</MudNavMenu>
+
+@code {
+    private ClaimsPrincipal _authenticationStateProviderUser;
+
+    private bool _canViewHangfire;
+    private bool _canViewDashboards;
+    private bool _canViewDocuments;
+    private bool _canViewDocumentTypes;
+    private bool _canViewAuditTrails;
+    private bool _canViewRoles;
+    private bool _canViewUsers;
+    private bool _canViewChat;
+    private bool _canViewFarmProfiles;
+    private bool _canViewCounties;
+    private bool _canViewTypesofFarming;
+    private bool _canViewAges;
+    private bool _canViewChicks;
+    private bool _canViewChickenExpenses;
+    private bool _canViewConsumptions;
+    private bool _canViewDiseases;
+    private bool _canViewEggs;
+    private bool _canViewGrowers;
+    private bool _canViewLayers;
+    private bool _canViewTypesofFeed;
+    private bool _canViewVaccinations;
+    private bool _canViewBreeds;
+    private bool _canViewColors;
+    private bool _canViewCows;
+    private bool _canViewDairyExpenses;
+    private bool _canViewMilk;
+    private bool _canViewStatuses;
+    private bool _canViewTags;
+    private bool _canViewWeightEstimates;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _authenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
+        _canViewHangfire = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Hangfire.View)).Succeeded;
+        _canViewDashboards = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Dashboards.View)).Succeeded;
+        _canViewDocuments = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Documents.View)).Succeeded;
+        _canViewDocumentTypes = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.DocumentTypes.View)).Succeeded;
+        _canViewAuditTrails = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.AuditTrails.View)).Succeeded;
+        _canViewRoles = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Roles.View)).Succeeded;
+        _canViewUsers = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Users.View)).Succeeded;
+        _canViewChat = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Communication.Chat)).Succeeded;
+        _canViewFarmProfiles = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.FarmProfiles.View)).Succeeded;
+        _canViewCounties = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Counties.View)).Succeeded;
+        _canViewTypesofFarming = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.TypesofFarming.View)).Succeeded;
+        _canViewAges = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Ages.View)).Succeeded;
+        _canViewChicks = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Chicks.View)).Succeeded;
+        _canViewChickenExpenses = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.ChickenExpenses.View)).Succeeded;
+        _canViewConsumptions = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Consumptions.View)).Succeeded;
+        _canViewDiseases = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Diseases.View)).Succeeded;
+        _canViewEggs = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Eggs.View)).Succeeded;
+        _canViewGrowers = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Growers.View)).Succeeded;
+        _canViewLayers = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Layers.View)).Succeeded;
+        _canViewTypesofFeed = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.TypesofFeed.View)).Succeeded;
+        _canViewVaccinations = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Vaccinations.View)).Succeeded;
+        _canViewBreeds = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Breeds.View)).Succeeded;
+        _canViewColors = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Colors.View)).Succeeded;
+        _canViewCows = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Cows.View)).Succeeded;
+        _canViewDairyExpenses = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.DairyExpenses.View)).Succeeded;
+        _canViewMilk = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Milk.View)).Succeeded;
+        _canViewStatuses = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Statuses.View)).Succeeded;
+        _canViewTags = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Tags.View)).Succeeded;
+        _canViewWeightEstimates = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.WeightEstimates.View)).Succeeded;
+    }
+}

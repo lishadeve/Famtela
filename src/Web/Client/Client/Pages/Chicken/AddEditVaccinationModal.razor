@@ -1,0 +1,67 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditVaccinationModal> _localizer
+
+<EditForm Model="@AddEditVaccinationModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditVaccinationModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Vaccination Record"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Vaccination Record"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditVaccinationModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditVaccinationModel.Id)" @bind-Value="AddEditVaccinationModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Disease"]" For="@(() => AddEditVaccinationModel.DiseaseId)" @bind-Value="AddEditVaccinationModel.DiseaseId" ResetValueOnEmptyText="true" SearchFunc="@SearchDiseases" Variant="Variant.Filled" ToStringFunc="@(i => _diseases.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Age"]" For="@(() => AddEditVaccinationModel.AgeId)" @bind-Value="AddEditVaccinationModel.AgeId" ResetValueOnEmptyText="true" SearchFunc="@SearchAges" Variant="Variant.Filled" ToStringFunc="@(i => _ages.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditVaccinationModel.Administration)" @bind-Value="AddEditVaccinationModel.Administration" Label="@_localizer["Administration"]" />
+                </MudItem>
+                @if (AddEditVaccinationModel.Id == 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField T="string" For="@(() => AddEditVaccinationModel.Remarks)" @bind-Value="AddEditVaccinationModel.Remarks" Label="@_localizer["Remarks"]" />
+                    </MudItem>
+                }
+                else
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled T="string" For="@(() => AddEditVaccinationModel.Remarks)" @bind-Value="AddEditVaccinationModel.Remarks" Label="@_localizer["Remarks"]" />
+                    </MudItem>
+                }
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditVaccinationModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

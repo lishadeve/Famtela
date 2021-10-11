@@ -1,0 +1,82 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditCowModal> _localizer
+
+<EditForm Model="@AddEditCowModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditCowModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Cow Record"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Cow Record"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditCowModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditCowModel.Id)" @bind-Value="AddEditCowModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                @if (AddEditCowModel.Id == 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField T="string" For="@(() => AddEditCowModel.EarTagNumber)" @bind-Value="AddEditCowModel.EarTagNumber" Label="@_localizer["Cow Name"]" />
+                    </MudItem>
+                }
+                else
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled T="string" For="@(() => AddEditCowModel.EarTagNumber)" @bind-Value="AddEditCowModel.EarTagNumber" Label="@_localizer["Cow Name"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField T="DateTime?" For="@(() => AddEditCowModel.DateofBirth)" @bind-Value="AddEditCowModel.DateofBirth" Label="@_localizer["Date of Birth"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditCowModel.BirthWeight)" @bind-Value="AddEditCowModel.BirthWeight" Label="@_localizer["Birth Weight"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditCowModel.Sire)" @bind-Value="AddEditCowModel.Sire" Label="@_localizer["Sire"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditCowModel.Dam)" @bind-Value="AddEditCowModel.Dam" Label="@_localizer["Dam"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Breed"]" For="@(() => AddEditCowModel.BreedId)" @bind-Value="AddEditCowModel.BreedId" ResetValueOnEmptyText="true" SearchFunc="@SearchBreeds" Variant="Variant.Filled" ToStringFunc="@(i => _breeds.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Color"]" For="@(() => AddEditCowModel.ColorId)" @bind-Value="AddEditCowModel.ColorId" ResetValueOnEmptyText="true" SearchFunc="@SearchColors" Variant="Variant.Filled" ToStringFunc="@(i => _colors.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Status"]" For="@(() => AddEditCowModel.StatusId)" @bind-Value="AddEditCowModel.StatusId" ResetValueOnEmptyText="true" SearchFunc="@SearchStatuses" Variant="Variant.Filled" ToStringFunc="@(i => _statuses.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Tag"]" For="@(() => AddEditCowModel.TagId)" @bind-Value="AddEditCowModel.TagId" ResetValueOnEmptyText="true" SearchFunc="@SearchTags" Variant="Variant.Filled" ToStringFunc="@(i => _tags.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditCowModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

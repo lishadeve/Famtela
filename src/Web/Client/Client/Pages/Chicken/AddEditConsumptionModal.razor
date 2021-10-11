@@ -1,0 +1,67 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditConsumptionModal> _localizer
+
+<EditForm Model="@AddEditConsumptionModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditConsumptionModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Consumption"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Consumption"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditConsumptionModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditConsumptionModel.Id)" @bind-Value="AddEditConsumptionModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Type of Feed"]" For="@(() => AddEditConsumptionModel.TypeofFeedId)" @bind-Value="AddEditConsumptionModel.TypeofFeedId" ResetValueOnEmptyText="true" SearchFunc="@SearchTypesofFeed" Variant="Variant.Filled" ToStringFunc="@(i => _typesofFeed.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Age"]" For="@(() => AddEditConsumptionModel.AgeId)" @bind-Value="AddEditConsumptionModel.AgeId" ResetValueOnEmptyText="true" SearchFunc="@SearchAges" Variant="Variant.Filled" ToStringFunc="@(i => _ages.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="decimal" For="@(() => AddEditConsumptionModel.Grams)" @bind-Value="AddEditConsumptionModel.Grams" Label="@_localizer["Grams"]" />
+                </MudItem>
+                @if (AddEditConsumptionModel.Id == 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField T="string" For="@(() => AddEditConsumptionModel.Remarks)" @bind-Value="AddEditConsumptionModel.Remarks" Label="@_localizer["Remarks"]" />
+                    </MudItem>
+                }
+                else
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled T="string" For="@(() => AddEditConsumptionModel.Remarks)" @bind-Value="AddEditConsumptionModel.Remarks" Label="@_localizer["Remarks"]" />
+                    </MudItem>
+                }
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditConsumptionModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

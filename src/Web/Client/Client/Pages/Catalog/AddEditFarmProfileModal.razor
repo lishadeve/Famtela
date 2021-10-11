@@ -1,0 +1,64 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditFarmProfileModal> _localizer
+
+<EditForm Model="@AddEditFarmProfileModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditFarmProfileModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Farm Profile"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Farm Profile"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @*@if (AddEditFarmProfileModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditFarmProfileModel.Id)" @bind-Value="AddEditFarmProfileModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }*@
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Type of Farming"]" For="@(() => AddEditFarmProfileModel.TypeofFarmingId)" @bind-Value="AddEditFarmProfileModel.TypeofFarmingId" ResetValueOnEmptyText="true" SearchFunc="@SearchTypesofFarming" Variant="Variant.Filled" ToStringFunc="@(i => _typesoffarming.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["County"]" For="@(() => AddEditFarmProfileModel.CountyId)" @bind-Value="AddEditFarmProfileModel.CountyId" ResetValueOnEmptyText="true" SearchFunc="@SearchCounties" Variant="Variant.Filled" ToStringFunc="@(i => _counties.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                @if (AddEditFarmProfileModel.Id == 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField For="@(() => AddEditFarmProfileModel.FarmName)" @bind-Value="AddEditFarmProfileModel.FarmName" Label="@_localizer["Farm Name"]" />
+                    </MudItem>
+                }
+                else
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditFarmProfileModel.FarmName)" @bind-Value="AddEditFarmProfileModel.FarmName" Label="@_localizer["Farm Name"]" />
+                    </MudItem>
+                }
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditFarmProfileModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>
